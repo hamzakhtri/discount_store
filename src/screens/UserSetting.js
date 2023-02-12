@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom'
 
 export default function UserSetting() {
 
-
     const navigate = useNavigate();
 
     const logout = ()=>{
