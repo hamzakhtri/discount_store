@@ -1,17 +1,20 @@
 import { initializeApp } from "firebase/app";
-import {getAuth,signInWithEmailAndPassword,createUserWithEmailAndPassword,} from "firebase/auth";
+import {getAuth,signInWithEmailAndPassword,createUserWithEmailAndPassword, signOut} from "firebase/auth";
+import {uploadBytes, ref, getStorage, getDownloadURL} from 'firebase/storage'
 import {
     getFirestore,
     doc,
     setDoc,
-    addDoc,
+    // addDoc,
     collection,
-    query,
-    getDoc,
+    // query,
+    // getDoc,
     getDocs,
-    DocRef,
-    deleteDoc,
+    // DocRef,
+    // deleteDoc,
   } from "firebase/firestore";
+
+  
 
 const firebaseConfig = {
   apiKey: "AIzaSyBWqEQ3Otp4BuXF4QCbRFVrnSImZE_ciCc",
@@ -23,10 +26,13 @@ const firebaseConfig = {
 };
 
 
+
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
+const storage = getStorage(app);
 
 const addUserToDBSignup = async (fullName, contact) => {
   const uid = auth.currentUser.uid;
@@ -38,14 +44,18 @@ const addUserToDBSignup = async (fullName, contact) => {
   return setDoc(doc(db, "users", uid), userProfile);
 };
 
+
+
+
+
+  
+
 export {
     auth,
     createUserWithEmailAndPassword,
     addUserToDBSignup,
-    doc,
-    db,
     collection,
     getDocs,
-    signInWithEmailAndPassword
+    signInWithEmailAndPassword,
+    db,getDownloadURL, storage, uploadBytes, doc,setDoc, ref, signOut
   };
-

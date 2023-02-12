@@ -126,3 +126,17 @@
 .order-page {
   margin-bottom: 150px;
 }
+
+input.qty-field {
+  width: 80px;
+  border-radius: 10px;
+  background-color: lightgray;
+}
+
+.container.cart-page {
+  margin-bottom: 120px;
+}
+
+.user-shop-page {
+  margin-bottom: 120px;
+}

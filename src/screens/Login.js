@@ -16,18 +16,14 @@ export default function Login() {
     bindActionCreators(actionCreators, dispatch);
 
   const admins = useSelector((state) => state.myAdmins);
-  console.log(admins);
 
   let [whereToNavigate, setWhereToNavigate] = useState("");
 
   const isAdminHandler = (e) => {
-    // console.log(e.target.value)
     for (let item of admins) {
       if (item.email === e.target.value) {
-        console.log("ye admin ha ");
         admintExists(true);
         setWhereToNavigate("/admin");
-        // console.log("isResturant inside " + isResturant)
         return;
       } else {
         setWhereToNavigate("/userHome");
@@ -41,12 +37,15 @@ export default function Login() {
           const email = document.getElementById("email").value;
           const password = document.getElementById("psw").value;
     
-          await signInWithEmailAndPassword(auth, email, password);
+          const userInfo =  await signInWithEmailAndPassword(auth, email, password);
+
           Swal.fire({
-            title: "Congrats! Loggined Successfully.",
-            width: 600,
+            title: "Loggined Successfully.",
+            width: 500,
             padding: "3em",
+            icon: 'success'
           });
+          authData(userInfo);
           navigate(whereToNavigate);
           window.scrollTo(0, 0);
         } catch (e) {

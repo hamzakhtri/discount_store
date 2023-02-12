@@ -2,10 +2,29 @@ import React from 'react'
 import Footer from '../components/Footer'
 import mango from '../images/mango.png'
 import adminPic from '../images/admin-avatar.png'
+import {signOut, auth} from '../config/Firebase'
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom'
 
 export default function Setting() {
+
+    const navigate = useNavigate();
+
+    const logout = ()=>{
+        signOut(auth).then(() => {
+             Swal.fire({
+                title: "Logged Out Successfully.",
+                width: 500,
+                padding: "3em",
+                icon: 'success'
+              });
+              navigate("/");
+          }).catch((error) => {
+            // An error happened.
+          });
+    }
+
     return (
-        <div>
             <>
                 <div className="container">
                     <div className="admin-head d-flex flex-column align-items-center">
@@ -55,7 +74,7 @@ export default function Setting() {
                                 </div>
                             </div>
                             <div className="signup-btn text-center">
-                                <button className='btn btn-primary theme-btn mt-3 fw-bold px-4 shadow'>Log Out</button>
+                                <button className='btn btn-primary theme-btn mt-3 fw-bold px-4 shadow' onClick={logout}>Log Out</button>
                             </div>
                         </div>
                     </div>
@@ -63,6 +82,5 @@ export default function Setting() {
                 <Footer />
             </>
 
-        </div>
     )
 }

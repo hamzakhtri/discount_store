@@ -9,6 +9,7 @@ import AddItem from './screens/AddItem';
 import Order from './screens/Order';
 import Setting from './screens/Setting';
 import Cart from './screens/Cart';
+import UserSetting from './screens/UserSetting';
 
 
 
@@ -27,6 +28,8 @@ function App() {
           <Route path="/order" element={<Order />} />
           <Route path="/setting" element={<Setting />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/usersetting" element={<UserSetting />} />
+          <Route path="/shop" element={<UserHome />} />
         </Routes>
       </BrowserRouter>
     </>
