@@ -2,10 +2,39 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword, auth } from '../config/Firebase';
 import Swal from 'sweetalert2';
+import { useDispatch, useSelector } from "react-redux";
+import { bindActionCreators } from "redux";
+import actionCreators from "../store/index";
+import { useState } from 'react';
 
 export default function Login() {
 
     const navigate = useNavigate();
+
+    const dispatch = useDispatch();
+  const { sendAdminData, isAuthenticatedData, admintExists, authData } =
+    bindActionCreators(actionCreators, dispatch);
+
+  const admins = useSelector((state) => state.myAdmins);
+  console.log(admins);
+
+  let [whereToNavigate, setWhereToNavigate] = useState("");
+
+  const isAdminHandler = (e) => {
+    // console.log(e.target.value)
+    for (let item of admins) {
+      if (item.email === e.target.value) {
+        console.log("ye admin ha ");
+        admintExists(true);
+        setWhereToNavigate("/admin");
+        // console.log("isResturant inside " + isResturant)
+        return;
+      } else {
+        setWhereToNavigate("/userHome");
+      }
+    }
+}
+
 
     const login = async () => {
         try {
@@ -18,7 +47,7 @@ export default function Login() {
             width: 600,
             padding: "3em",
           });
-          navigate("/userhome");
+          navigate(whereToNavigate);
           window.scrollTo(0, 0);
         } catch (e) {
           Swal.fire({
@@ -40,7 +69,7 @@ export default function Login() {
                     <div className="signup-form w-75 mx-auto mt-5">
                         <div className="input-fields">
                             <div className="input-group">
-                                <input className="form-control border-end-0 border rounded-pill" type="email" placeholder="Your Email" id="email" />
+                                <input className="form-control border-end-0 border rounded-pill" type="email" onChange={isAdminHandler} placeholder="Your Email" id="email" />
                                 <span className="input-group-append d-flex align-items-center">
                                     <i className="fa fa-user"></i>
                                 </span>

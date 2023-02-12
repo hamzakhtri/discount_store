@@ -79,7 +79,7 @@
 }
 
 .admin-top-bar {
-  border-bottom: 1px solid;
+  border-bottom: 1px solid gray;
   padding-bottom: 10px;
 }
 
@@ -99,7 +99,7 @@
 }
 
 .footer-container{
-  width: 100%;
+    width: 100%;
     position: fixed;
     bottom: 0;
     left: 50%;
@@ -107,8 +107,22 @@
     transform: translate(-50%);
     margin-top: 150px !important;
     background-color: white !important;
+    z-index: 99999;
+    border-top: 5px solid #61B846;
 }
 
 .horizontal-card-sec.container {
   margin-bottom: 120px;
+}
+
+.container.addItemSec {
+  margin-bottom: 120px !important;
+}
+
+.order-sec.container {
+  border-bottom: 1px solid gray;
+}
+
+.order-page {
+  margin-bottom: 150px;
 }

@@ -1,10 +1,33 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import logo from '../images/logo.png'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch } from "react-redux";
+import { bindActionCreators } from "redux";
+import actionCreators from "../store/index";
+import {collection, getDocs, db} from "../config/Firebase"
+
 
 export default function Welcome() {
 
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
+  const { sendAdminData } =
+    bindActionCreators(actionCreators, dispatch);
+
+  useEffect(() => {
+    (async () => {
+      const querySnapshot = await getDocs(collection(db, "admins"));
+      const admins = [];
+      querySnapshot.forEach((doc) => {
+        admins.push({ id: doc.id, ...doc.data() });
+      });
+      console.log(admins);
+
+    //   dispatching action
+      sendAdminData(admins);
+    })();
+  }, []);
 
   return (
     <div>

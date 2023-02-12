@@ -5,6 +5,10 @@ import Signup from './screens/Signup';
 import Login from './screens/Login';
 import UserHome from './screens/UserHome';
 import AdminPortal from './screens/AdminPortal';
+import AddItem from './screens/AddItem';
+import Order from './screens/Order';
+import Setting from './screens/Setting';
+import Cart from './screens/Cart';
 
 
 
@@ -19,6 +23,10 @@ function App() {
           <Route path="/signin" element={<Login />} />
           <Route path="/userhome" element={<UserHome />} />
           <Route path="/admin" element={<AdminPortal />} />
+          <Route path="/additem" element={<AddItem />} />
+          <Route path="/order" element={<Order />} />
+          <Route path="/setting" element={<Setting />} />
+          <Route path="/cart" element={<Cart />} />
         </Routes>
       </BrowserRouter>
     </>

@@ -1,8 +1,12 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import adminAvatar from '../images/admin-avatar.png'
 import orderIcon from '../images/order-icon.png'
 
 export default function AdminNavbar() {
+
+    const navigate = useNavigate();
+
   return (
     <div>
       <div className='container'>
@@ -17,7 +21,7 @@ export default function AdminNavbar() {
                             <h4 className='green-text fw-bold m-0'>Admin</h4>
                         </div>
                     </div>
-                    <div className="order-img">
+                    <div className="order-img" onClick={()=>navigate('/order')}>
                         <img src={orderIcon} alt="" />
                     </div>
                 </div>

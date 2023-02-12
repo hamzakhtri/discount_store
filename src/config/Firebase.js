@@ -1,7 +1,18 @@
 import { initializeApp } from "firebase/app";
 import {getAuth,signInWithEmailAndPassword,createUserWithEmailAndPassword,} from "firebase/auth";
+import {
+    getFirestore,
+    doc,
+    setDoc,
+    addDoc,
+    collection,
+    query,
+    getDoc,
+    getDocs,
+    DocRef,
+    deleteDoc,
+  } from "firebase/firestore";
 
-import {getFirestore,doc,setDoc} from "firebase/firestore";
 const firebaseConfig = {
   apiKey: "AIzaSyBWqEQ3Otp4BuXF4QCbRFVrnSImZE_ciCc",
   authDomain: "discount-store-3986f.firebaseapp.com",
@@ -27,4 +38,14 @@ const addUserToDBSignup = async (fullName, contact) => {
   return setDoc(doc(db, "users", uid), userProfile);
 };
 
-export { auth, createUserWithEmailAndPassword, addUserToDBSignup, doc, signInWithEmailAndPassword };
+export {
+    auth,
+    createUserWithEmailAndPassword,
+    addUserToDBSignup,
+    doc,
+    db,
+    collection,
+    getDocs,
+    signInWithEmailAndPassword
+  };
+
